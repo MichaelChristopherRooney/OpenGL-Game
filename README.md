@@ -15,11 +15,17 @@ To compile this project you must tell your compile to include the Include direct
 Your compiler must also know where to find OpenGL, glew and GLFW libraries.
 
 #Implemented features:
-	User input
-	Loading and displaying several textured models at once
-	Map is generated randomly according to a given specification
+
+- User input
+
+- Loading and displaying several textured models at once
+
+- Map is generated randomly according to a given specification
 
 #Planned features:
-	Simple physics implementation
-	Win conditions
-	Lighting
+
+- Simple physics implementation
+
+- Win conditions
+
+- Lighting
