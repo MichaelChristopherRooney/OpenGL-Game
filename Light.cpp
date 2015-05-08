@@ -21,9 +21,9 @@ void Light::update(){
 	glUniform3fv(game->shader->shaderIDs.at("lightAmbient"), 1, &lightAmbient[0]);
 
 	lightPosition = glm::vec3(
-		2,
-		(game->player->playerModel->yLen * 3) + game->player->playerModel->maxY,
-		game->player->playerModel->minZ + game->player->playerModel->zLen / 2
+		game->player->playerModel->centre.x,
+		game->player->playerModel->centre.y + game->player->playerModel->yLen,
+		game->player->playerModel->centre.z
 	);
 
 }

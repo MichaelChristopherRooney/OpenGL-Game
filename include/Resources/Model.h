@@ -50,7 +50,6 @@ public:
 
 	GLuint vao;
 	GLuint vbo;
-	GLuint colourVBO;
 
 	GLuint uvVBO;
 	GLuint vnVBO;

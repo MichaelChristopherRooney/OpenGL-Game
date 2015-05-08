@@ -10,16 +10,37 @@ Player::Player(){
 
 void Player::updateAndDraw(){
 
-	if (game->input->keys.at("A")){
-		playerModel->tz += playerSpeed * game->deltaTime;
+	processInput();
+	playerModel->draw();
+
+}
+
+void Player::processInput(){
+
+	if (game->input->keys.at("W")){
+		playerModel->tx += playerSpeed * game->deltaTime;
 	}
 
-	if (game->input->keys.at("D")){
+	if (game->input->keys.at("S")){
+		playerModel->tx -= playerSpeed * game->deltaTime;
+	}
+
+	if (game->input->keys.at("A")){
 		playerModel->tz -= playerSpeed * game->deltaTime;
 	}
 
-	playerModel->translate(0, playerModel->yLen, playerModel->tz);
+	if (game->input->keys.at("D")){
+		playerModel->tz += playerSpeed * game->deltaTime;
+	}
 
-	playerModel->draw();
+	if (game->input->keys.at("SPACE")){
+		playerModel->ty += playerSpeed * game->deltaTime;
+	}
+
+	if (game->input->keys.at("CTRL")){
+		playerModel->ty -= playerSpeed * game->deltaTime;
+	}
+
+	playerModel->translate();
 
 }

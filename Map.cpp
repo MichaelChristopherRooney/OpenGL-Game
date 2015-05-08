@@ -30,7 +30,7 @@ bool Map::generateRandomMap(){
 	for (int i = 0; i < mapSize; i++){
 		for (int j = 0; j < mapSize; j++){
 
-			localHeight = (rand() % 3) + 1;
+			localHeight = (rand() % 2) + 1;
 
 			for (int n = 0; n < localHeight; n++){
 				temp = new Model();

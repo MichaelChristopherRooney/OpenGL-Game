@@ -12,7 +12,7 @@ public:
 	bool generateRandomMap();
 	void drawBlocks();
 
-	const int mapSize = 5;
+	const int mapSize = 10;
 
 	std::vector<Model*> blocks;
 

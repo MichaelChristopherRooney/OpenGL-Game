@@ -37,6 +37,7 @@ bool Model::setTexture(Texture *copyTexture){
 	texture = copyTexture;
 
 	return true;
+
 }
 
 void Model::findEdges(){

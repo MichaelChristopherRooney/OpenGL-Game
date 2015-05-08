@@ -6,7 +6,9 @@ Input::Input(){
 		{ "W", false },
 		{ "A", false },
 		{ "S", false },
-		{ "D", false }
+		{ "D", false },
+		{ "SPACE", false },
+		{ "CTRL", false }
 	});
 
 	mouseX = 0;
@@ -19,44 +21,39 @@ void Input::update(){
 
 	if (glfwGetKey(game->window, GLFW_KEY_W)){
 		keys.at("W") = true;
-	}
-	else{
+	}else{
 		keys.at("W") = false;
 	}
 
 	if (glfwGetKey(game->window, GLFW_KEY_A)){
 		keys.at("A") = true;
-	}
-	else{
+	}else{
 		keys.at("A") = false;
 	}
 
 	if (glfwGetKey(game->window, GLFW_KEY_S)){
 		keys.at("S") = true;
-	}
-	else{
+	}else{
 		keys.at("S") = false;
 	}
 
 	if (glfwGetKey(game->window, GLFW_KEY_D)){
 		keys.at("D") = true;
-	}
-	else{
+	}else{
 		keys.at("D") = false;
 	}
 
-	/*
 	if (glfwGetKey(game->window, GLFW_KEY_SPACE)){
-	}
-	else{
-	}
-
-	if (glfwGetKey(game->window, GLFW_KEY_LEFT_ALT)){
-	}
-	else{
+		keys.at("SPACE") = true;
+	}else{
+		keys.at("SPACE") = false;
 	}
 
-	*/
+	if (glfwGetKey(game->window, GLFW_KEY_LEFT_CONTROL)){
+		keys.at("CTRL") = true;
+	}else{
+		keys.at("CTRL") = false;
+	}
 
 	if (glfwGetKey(game->window, GLFW_KEY_ESCAPE)){
 

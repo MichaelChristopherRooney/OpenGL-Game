@@ -9,6 +9,8 @@ public:
 	Player();
 
 	void updateAndDraw();
+	void processInput();
+
 	Model *playerModel;
 
 	const float playerSpeed = 2.0f;
