@@ -66,20 +66,13 @@ bool load_obj_file(
 			face_count++;
 		}
 	}
-	printf(
-		"found %i vp %i vt %i vn unique in obj. allocating memory...\n",
-		unsorted_vp_count, unsorted_vt_count, unsorted_vn_count
-		);
+
 	unsorted_vp_array = (float*)malloc(unsorted_vp_count * 3 * sizeof(float));
 	unsorted_vt_array = (float*)malloc(unsorted_vt_count * 2 * sizeof(float));
 	unsorted_vn_array = (float*)malloc(unsorted_vn_count * 3 * sizeof(float));
 	points = (float*)malloc(3 * face_count * 3 * sizeof(float));
 	tex_coords = (float*)malloc(3 * face_count * 2 * sizeof(float));
 	normals = (float*)malloc(3 * face_count * 3 * sizeof(float));
-	printf(
-		"allocated %i bytes for mesh\n",
-		(int)(3 * face_count * 8 * sizeof(float))
-		);
 
 	rewind(fp);
 	while (fgets(line, 1024, fp)) {
@@ -178,10 +171,7 @@ bool load_obj_file(
 	free(unsorted_vp_array);
 	free(unsorted_vn_array);
 	free(unsorted_vt_array);
-	printf(
-		"allocated %i points\n",
-		point_count
-		);
+
 	return true;
 }
 

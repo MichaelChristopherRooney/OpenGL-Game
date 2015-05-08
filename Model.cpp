@@ -1,5 +1,4 @@
 #define STB_IMAGE_IMPLEMENTATION
-#include <Resources\Texture.h>
 #include <Resources\Game.h>
 #include <Resources\obj_parser.h>
 
@@ -22,9 +21,22 @@ Model::Model(){
 
 	angle = 0.0f;
 
+}
+
+bool Model::setTexture(std::string textureFile){
+
 	texture = new Texture();
 	texture->load_from_file("Assets/Textures/metal.jpg");
 
+	return true;
+
+}
+
+bool Model::setTexture(Texture *copyTexture){
+
+	texture = copyTexture;
+
+	return true;
 }
 
 void Model::findEdges(){
@@ -102,6 +114,30 @@ bool Model::initFromFile(std::string file){
 
 	vaoSize = sizeof(float) * pointCount * 3;
 	uvSize = sizeof(UV) * sizeof(float) * pointCount;
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, vaoSize, vp, GL_STATIC_DRAW);
+
+	findEdges();
+
+	return true;
+
+}
+
+bool Model::copyFromExisting(Model *e){
+
+	vp = e->vp;
+	UV = e->UV;
+	vn = e->vn;
+	pointCount = e->pointCount;
+
+	vaoSize = e->vaoSize;
+	uvSize = e->uvSize;
+
+	glGenVertexArrays(1, &vao);
+	glGenBuffers(1, &vbo);
+	glGenBuffers(1, &uvVBO);
+	glGenBuffers(1, &vnVBO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, vaoSize, vp, GL_STATIC_DRAW);

@@ -17,6 +17,10 @@ public:
 	Texture *texture;
 
 	bool initFromFile(std::string file);
+	bool copyFromExisting(Model *e);
+	bool setTexture(std::string textureFile);
+	bool setTexture(Texture *copyTexture);
+	
 
 	void findEdges();
 	void setRotating(float speed);

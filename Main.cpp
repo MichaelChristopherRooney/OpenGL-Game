@@ -11,6 +11,8 @@ int main() {
 	game = new Game();
 
 	if (!game->init()){
+		printf("Error in initialising game. Press enter to continue.......\n");
+		getchar();
 		return 1;
 	}
 
@@ -23,4 +25,5 @@ int main() {
 	}
 
 	return 0;
+
 }

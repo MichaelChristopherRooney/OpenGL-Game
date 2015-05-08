@@ -1,7 +1,7 @@
 #include <Resources\Game.h>
 
 Game::Game(){
-	model = new Model();
+
 }
 
 /* initialise everything needed to run the game */
@@ -16,16 +16,15 @@ bool Game::init(){
 	shader = new Shader();
 	if (!shader->createShader()){
 		printf("Error creating shader\n");
-		getchar();
 		return false;
 	}
-
-
 
 	player = new Player();
 	input = new Input();
 	camera = new Camera();
 	light = new Light();
+	textures = new TextureData();
+	models = new ModelData();
 
 	map = new Map();
 	if (!map->createMap()){
@@ -50,7 +49,7 @@ bool Game::initOpenGL(){
 		return 1;
 	}
 
-	window = glfwCreateWindow(xRes, yRes, "Cube Game", NULL, NULL);
+	window = glfwCreateWindow(xRes, yRes, "Game", NULL, NULL);
 
 	if (!window){
 		return 1;

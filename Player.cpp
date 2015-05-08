@@ -4,6 +4,7 @@ Player::Player(){
 
 	playerModel = new Model();
 	playerModel->initFromFile("Assets/Models/cube.obj");
+	playerModel->setTexture("Assets/Textures/metal.jpg");
 
 }
 

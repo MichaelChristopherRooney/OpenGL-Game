@@ -76,10 +76,12 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelData.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Resources\Camera.h" />
@@ -88,11 +90,14 @@
     <ClInclude Include="include\Resources\Light.h" />
     <ClInclude Include="include\Resources\Map.h" />
     <ClInclude Include="include\Resources\Model.h" />
+    <ClInclude Include="include\Resources\ModelData.h" />
+    <ClInclude Include="include\Resources\obj_parser.h" />
     <ClInclude Include="include\Resources\Physics.h" />
     <ClInclude Include="include\Resources\Player.h" />
     <ClInclude Include="include\Resources\Shader.h" />
     <ClInclude Include="include\Resources\stb_image.h" />
     <ClInclude Include="include\Resources\Texture.h" />
+    <ClInclude Include="include\Resources\TextureData.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\fragmentshader.glsl" />

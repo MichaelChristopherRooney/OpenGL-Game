@@ -28,25 +28,19 @@ bool Map::generateRandomMap(){
 	Model *temp;
 
 	for (int i = 0; i < mapSize; i++){
+		for (int j = 0; j < mapSize; j++){
 
-		if (i == 0 || i == mapSize - 1){
-			localHeight = 1;
-		}else{
-			if (localHeight == 0){
-				localHeight = (rand() % 3) + 1;
-			}else{ // don't allow two sequential empty spaces
-				localHeight = rand() % 4;
+			localHeight = (rand() % 3) + 1;
+
+			for (int n = 0; n < localHeight; n++){
+				temp = new Model();
+				temp->copyFromExisting(game->models->cube);
+				temp->setTexture(game->textures->metalTexture);
+				temp->translate(temp->xLen * i, temp->yLen * n, temp->zLen * j);
+				blocks.push_back(temp);
 			}
-			
-		}
 
-		for (int n = 0; n < localHeight; n++){
-			temp = new Model();
-			temp->initFromFile("Assets/Models/cube.obj");
-			temp->translate(0, temp->yLen * n, temp->zLen * -i);
-			blocks.push_back(temp);
 		}
-
 	}
 
 	return true;

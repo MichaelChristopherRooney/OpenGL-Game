@@ -1958,7 +1958,6 @@ static stbi_uc *load_jpeg_image(stbi__jpeg *z, int *out_x, int *out_y, int *comp
 		stbi__cleanup_jpeg(z);
 		*out_y = z->s->img_x;
 		*out_x = z->s->img_y;
-		printf("Here\n");
 		if (comp) *comp = z->s->img_n; // report original components, not output
 		return output;
 	}

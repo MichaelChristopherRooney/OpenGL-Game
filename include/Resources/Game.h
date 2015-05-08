@@ -11,6 +11,9 @@
 #include <Resources\Player.h>
 #include <Resources\Map.h>
 #include <Resources\Light.h>
+#include <Resources\Texture.h>
+#include <Resources\TextureData.h>
+#include <Resources\ModelData.h>
 
 class Game{
 
@@ -30,12 +33,13 @@ public:
 
 	GLFWwindow *window;
 	Shader *shader;
-	Model *model;
 	Input *input;
 	Camera *camera;
 	Player *player;
 	Map *map;
 	Light *light;
+	TextureData *textures;
+	ModelData *models;
 
 	glm::mat4 modelMatrix;
 
