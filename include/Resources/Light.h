@@ -1,11 +1,17 @@
 #include <glm\glm.hpp>
 #include <glm\ext.hpp>
 
+class Game;
+extern Game *game;
+
 class Light{
 
 public:
 
 	Light();
+	void setActive();
+	void update();
+
 	void set_colour(float r, float g, float b);
 	void set_position(float x, float y, float z);
 

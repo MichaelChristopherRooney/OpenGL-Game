@@ -8,7 +8,7 @@ public:
 
 	Player();
 
-	void update();
+	void updateAndDraw();
 	Model *playerModel;
 
 	const float playerSpeed = 2.0f;

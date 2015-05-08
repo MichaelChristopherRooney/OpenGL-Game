@@ -72,6 +72,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -84,6 +85,7 @@
     <ClInclude Include="include\Resources\Camera.h" />
     <ClInclude Include="include\Resources\Game.h" />
     <ClInclude Include="include\Resources\Input.h" />
+    <ClInclude Include="include\Resources\Light.h" />
     <ClInclude Include="include\Resources\Map.h" />
     <ClInclude Include="include\Resources\Model.h" />
     <ClInclude Include="include\Resources\Physics.h" />

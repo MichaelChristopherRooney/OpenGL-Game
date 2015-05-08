@@ -10,6 +10,7 @@
 #include <Resources\Camera.h>
 #include <Resources\Player.h>
 #include <Resources\Map.h>
+#include <Resources\Light.h>
 
 class Game{
 
@@ -34,6 +35,7 @@ public:
 	Camera *camera;
 	Player *player;
 	Map *map;
+	Light *light;
 
 	glm::mat4 modelMatrix;
 

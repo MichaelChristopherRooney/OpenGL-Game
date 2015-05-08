@@ -7,7 +7,7 @@ Player::Player(){
 
 }
 
-void Player::update(){
+void Player::updateAndDraw(){
 
 	if (game->input->keys.at("A")){
 		playerModel->tz += playerSpeed * game->deltaTime;
@@ -18,5 +18,7 @@ void Player::update(){
 	}
 
 	playerModel->translate(0, playerModel->yLen, playerModel->tz);
+
+	playerModel->draw();
 
 }

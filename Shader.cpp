@@ -98,21 +98,20 @@ bool Shader::checkShaderStatus(){
 void Shader::getIDs(){
 
 	shaderIDs.insert({
-		{ "model",			glGetUniformLocation(shaderProgramme, "model"			) },
-		{ "projection",		glGetUniformLocation(shaderProgramme, "projection"		) },
-		{ "view",			glGetUniformLocation(shaderProgramme, "view"			) },
-		{ "translation",	glGetUniformLocation(shaderProgramme, "translation"		) },
-		{ "rotation",		glGetUniformLocation(shaderProgramme, "rotation"		) },
-		{ "scale",			glGetUniformLocation(shaderProgramme, "scale"			) },
-
+		{ "model", glGetUniformLocation(shaderProgramme, "model") },
+		{ "projection",	glGetUniformLocation(shaderProgramme, "projection") },
+		{ "view", glGetUniformLocation(shaderProgramme, "view") },
+		{ "translation", glGetUniformLocation(shaderProgramme, "translation") },
+		{ "rotation", glGetUniformLocation(shaderProgramme, "rotation") },
+		{ "scale", glGetUniformLocation(shaderProgramme, "scale") },
+		{ "lightPosition", glGetUniformLocation(shaderProgramme, "lightPosition") },
+		{ "lightSpecular", glGetUniformLocation(shaderProgramme, "lightSpecular") },
+		{ "lightDiffuse", glGetUniformLocation(shaderProgramme, "lightDiffuse") },
+		{ "lightAmbient", glGetUniformLocation(shaderProgramme, "lightAmbient") }
 	});
 
-	/*
-			{ "lightPosition",	glGetUniformLocation(shaderProgramme, "lightPosition"	) },
-		{ "lightSpecular",	glGetUniformLocation(shaderProgramme, "lightSpecular"	) },
-		{ "lightDiffuse",	glGetUniformLocation(shaderProgramme, "lightDiffuse"	) },
-		{ "lightAmbient",	glGetUniformLocation(shaderProgramme, "lightAmbient"	) }
-	*/
+			
+
 
 }
 

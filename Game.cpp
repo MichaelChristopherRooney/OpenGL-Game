@@ -12,43 +12,29 @@ bool Game::init(){
 		printf("Error in creating OpenGL instance\n");
 		return false;
 	}
-
-	printf("OpenGL initialised\n");
 	
 	shader = new Shader();
 	if (!shader->createShader()){
 		printf("Error creating shader\n");
+		getchar();
 		return false;
 	}
 
+
+
 	player = new Player();
-
-	printf("Shader initialised\n");
-
 	input = new Input();
 	camera = new Camera();
-
-	modelMatrix = glm::mat4(1.0f);
+	light = new Light();
 
 	map = new Map();
-
 	if (!map->createMap()){
 		printf("Error creating map\n");
 		return false;
 	}
 
-	printf("Map created\n");
-	/*
-	glUniformMatrix4fv(shader->shaderIDs.at("model"), 1, GL_FALSE, &modelMatrix[0][0]);
-	glUniformMatrix4fv(shader->shaderIDs.at("projection"), 1, GL_FALSE, &camera->projection[0][0]);
-	glUniformMatrix4fv(shader->shaderIDs.at("view"), 1, GL_FALSE, &camera->view[0][0]);
+	modelMatrix = glm::mat4(1.0f);
 
-	light = new Light();
-	glUniform3fv(shader->shaderIDs.at("lightPosition"), 1, &light->lightPosition[0]);
-	glUniform3fv(shader->shaderIDs.at("lightSpecular"), 1, &light->lightSpecular[0]);
-	glUniform3fv(shader->shaderIDs.at("lightDiffuse"), 1, &light->lightDiffuse[0]);
-	glUniform3fv(shader->shaderIDs.at("lightAmbient"), 1, &light->lightAmbient[0]);
-	*/
 	return true;
 
 }
@@ -91,17 +77,15 @@ void Game::runTick(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glfwPollEvents();
-	input->update();
 
 	shader->setActive();
 
-	map->drawBlocks();
-
-	player->update();
-	player->playerModel->draw();
-
-	
+	input->update();
 	camera->update();
+	light->update();
+
+	map->drawBlocks();
+	player->updateAndDraw();
 
 	glUniformMatrix4fv(shader->shaderIDs.at("model"), 1, GL_FALSE, &modelMatrix[0][0]);
 

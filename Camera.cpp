@@ -27,7 +27,7 @@ void Camera::update(){
 	view = glm::lookAt(
 		glm::vec3(
 			2,
-			game->player->playerModel->yLen * 2,
+			game->player->playerModel->yLen + game->player->playerModel->maxY,
 			game->player->playerModel->minZ + game->player->playerModel->zLen / 2
 		),
 		game->player->playerModel->centre,
