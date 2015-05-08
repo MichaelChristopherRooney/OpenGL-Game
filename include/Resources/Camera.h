@@ -11,7 +11,10 @@ public:
 	Camera();
 
 	void update();
-	void calculateAngles();
+
+	void updateAngles();
+	void updatePosition();
+
 	void calculatePosition();
 	void calculateMatrices();
 
@@ -28,7 +31,7 @@ public:
 	float verticalAngle;
 
 	const float maxVertical = 1.5707;
-	const float minVertical = -1.5707;
+	const float minVertical = 0;
 
 	float fov;
 
@@ -36,6 +39,5 @@ public:
 	double mouseY;
 
 	const float mouseSpeed = 0.25;
-	const float cameraSpeed = 0.25;
 
 };

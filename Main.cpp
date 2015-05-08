@@ -19,7 +19,7 @@ int main() {
 	while (!glfwWindowShouldClose(game->window)) {
 
 		while ((glfwGetTime() - game->lastTime) < (1 / fps)){}
-		printf("Delta: %f\n:", game->deltaTime);
+
 		game->runTick();
 
 	}

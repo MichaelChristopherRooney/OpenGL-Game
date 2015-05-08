@@ -2,6 +2,7 @@
 #include <glm\glm.hpp>
 #include <glm\ext.hpp>
 #include <string>
+#include <vector>
 
 class Texture;
 
@@ -15,6 +16,7 @@ public:
 	Model();
 
 	Texture *texture;
+
 
 	bool initFromFile(std::string file);
 	bool copyFromExisting(Model *e);
@@ -31,12 +33,19 @@ public:
 	void rotate(float deltaTime);
 	void draw();
 
-	GLfloat* vp = NULL;
-	GLfloat* vn = NULL;
-	GLfloat* UV = NULL;
-	int pointCount = 0;
+	std::vector<glm::vec3> vertices;
+	std::vector<glm::vec2> uvs;
+	std::vector<glm::vec3> normals;
 
-	GLfloat uvSize;
+	GLuint vao;
+	GLuint vbo;
+
+	GLuint uvVBO;
+	GLuint vnVBO;
+
+	int vaoSize;
+	int uvSize;
+	int normalSize;
 
 	bool isRotating;
 	float rotateRate;
@@ -47,14 +56,6 @@ public:
 
 	float tx, ty, tz;
 	glm::vec3 tVec;
-
-	GLuint vao;
-	GLuint vbo;
-
-	GLuint uvVBO;
-	GLuint vnVBO;
-
-	int vaoSize;
 
 	float hxo;
 	float lxo;

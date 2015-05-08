@@ -34,6 +34,8 @@ bool Game::init(){
 
 	modelMatrix = glm::mat4(1.0f);
 
+	glfwSetCursorPos(window, xRes / 2, yRes / 2);
+
 	return true;
 
 }
@@ -81,11 +83,13 @@ void Game::runTick(){
 	shader->setActive();
 
 	input->update();
-	camera->update();
+	camera->updateAngles();
+	player->update();
+	camera->updatePosition();
 	light->update();
 
 	map->drawBlocks();
-	player->updateAndDraw();
+	player->draw();
 
 	glUniformMatrix4fv(shader->shaderIDs.at("model"), 1, GL_FALSE, &modelMatrix[0][0]);
 

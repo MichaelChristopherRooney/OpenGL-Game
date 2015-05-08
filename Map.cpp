@@ -7,40 +7,53 @@ Map::Map(){
 
 bool Map::createMap(){
 
-	generateRandomMap();
-
-	/*
-	Model *temp;
-	for (int i = 0; i < 10; i++){
-		temp = new Model();
-		temp->initFromFile("Assets/Models/cube.obj");
-		temp->translate(0, -temp->yLen, temp->zLen * -i);
-		blocks.push_back(temp);
-	}
-	*/
-	return true;
-
-}
-
-bool Map::generateRandomMap(){
-
-	int localHeight = 1;
 	Model *temp;
 
+	// create the floor
 	for (int i = 0; i < mapSize; i++){
 		for (int j = 0; j < mapSize; j++){
-
-			localHeight = (rand() % 2) + 1;
-
-			for (int n = 0; n < localHeight; n++){
-				temp = new Model();
-				temp->copyFromExisting(game->models->cube);
-				temp->setTexture(game->textures->metalTexture);
-				temp->translate(temp->xLen * i, temp->yLen * n, temp->zLen * j);
-				blocks.push_back(temp);
-			}
-
+			temp = new Model();
+			temp->copyFromExisting(game->models->cube);
+			temp->setTexture(game->textures->metalTexture);
+			temp->translate(temp->xLen * i, 0, temp->zLen * j);
+			blocks.push_back(temp);
 		}
+	}
+
+	// create the back edge
+	for (int i = 0; i < mapSize; i++){
+		temp = new Model();
+		temp->copyFromExisting(game->models->cube);
+		temp->setTexture(game->textures->metalTexture);
+		temp->translate(temp->xLen * -1, temp->yLen, temp->zLen * i);
+		blocks.push_back(temp);
+	}
+
+	// create the left edge
+	for (int i = 0; i < mapSize; i++){
+		temp = new Model();
+		temp->copyFromExisting(game->models->cube);
+		temp->setTexture(game->textures->metalTexture);
+		temp->translate(temp->xLen * i, temp->yLen, temp->zLen * -1);
+		blocks.push_back(temp);
+	}
+
+	// create the right edge
+	for (int i = 0; i < mapSize; i++){
+		temp = new Model();
+		temp->copyFromExisting(game->models->cube);
+		temp->setTexture(game->textures->metalTexture);
+		temp->translate(temp->xLen * i, temp->yLen, temp->zLen * mapSize);
+		blocks.push_back(temp);
+	}
+
+	// create the front edge
+	for (int i = 0; i < mapSize; i++){
+		temp = new Model();
+		temp->copyFromExisting(game->models->cube);
+		temp->setTexture(game->textures->metalTexture);
+		temp->translate(temp->xLen * mapSize, temp->yLen, temp->zLen * i);
+		blocks.push_back(temp);
 	}
 
 	return true;

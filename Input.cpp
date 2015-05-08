@@ -6,9 +6,7 @@ Input::Input(){
 		{ "W", false },
 		{ "A", false },
 		{ "S", false },
-		{ "D", false },
-		{ "SPACE", false },
-		{ "CTRL", false }
+		{ "D", false }
 	});
 
 	mouseX = 0;
@@ -43,23 +41,11 @@ void Input::update(){
 		keys.at("D") = false;
 	}
 
-	if (glfwGetKey(game->window, GLFW_KEY_SPACE)){
-		keys.at("SPACE") = true;
-	}else{
-		keys.at("SPACE") = false;
-	}
-
-	if (glfwGetKey(game->window, GLFW_KEY_LEFT_CONTROL)){
-		keys.at("CTRL") = true;
-	}else{
-		keys.at("CTRL") = false;
-	}
-
 	if (glfwGetKey(game->window, GLFW_KEY_ESCAPE)){
 
 	}
 
 	glfwGetCursorPos(game->window, &mouseX, &mouseY);
-	//glfwSetCursorPos(game->window, game->xRes / 2, game->yRes / 2);
+	glfwSetCursorPos(game->window, game->xRes / 2, game->yRes / 2);
 	
 }

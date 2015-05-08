@@ -1,45 +1,51 @@
 #include <Resources\Game.h>
+#include <math.h>
+#include <cmath>
 
 Player::Player(){
 
 	playerModel = new Model();
 	playerModel->initFromFile("Assets/Models/cube.obj");
 	playerModel->setTexture("Assets/Textures/metal.jpg");
+	playerModel->translate(3, playerModel->yLen, 3);
 
 }
 
-void Player::updateAndDraw(){
-
-	processInput();
+void Player::draw(){
 	playerModel->draw();
-
 }
 
-void Player::processInput(){
+void Player::update(){
+
+	float angle = game->camera->horizontalAngle;
+
+	float sideSpeed = 0;
+	float forwardSpeed = 0;
 
 	if (game->input->keys.at("W")){
-		playerModel->tx += playerSpeed * game->deltaTime;
+		forwardSpeed += playerSpeed * -sin(angle) * game->deltaTime;
+		sideSpeed += playerSpeed * -cos(angle) * game->deltaTime;
 	}
 
 	if (game->input->keys.at("S")){
-		playerModel->tx -= playerSpeed * game->deltaTime;
+		forwardSpeed -= playerSpeed * -sin(angle) * game->deltaTime;
+		sideSpeed -= playerSpeed * -cos(angle) * game->deltaTime;
 	}
 
 	if (game->input->keys.at("A")){
-		playerModel->tz -= playerSpeed * game->deltaTime;
+		forwardSpeed += playerSpeed * -cos(angle) * game->deltaTime;
+		sideSpeed += playerSpeed * sin(angle) * game->deltaTime;
 	}
 
 	if (game->input->keys.at("D")){
-		playerModel->tz += playerSpeed * game->deltaTime;
+		forwardSpeed += playerSpeed * cos(angle) * game->deltaTime;
+		sideSpeed += playerSpeed * -sin(angle) * game->deltaTime;
 	}
 
-	if (game->input->keys.at("SPACE")){
-		playerModel->ty += playerSpeed * game->deltaTime;
-	}
+	// need to stop moving diagonally being faster
 
-	if (game->input->keys.at("CTRL")){
-		playerModel->ty -= playerSpeed * game->deltaTime;
-	}
+	playerModel->tx += forwardSpeed;
+	playerModel->tz += sideSpeed;
 
 	playerModel->translate();
 

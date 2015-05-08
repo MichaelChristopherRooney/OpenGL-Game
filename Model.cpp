@@ -1,6 +1,6 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <Resources\Game.h>
-#include <Resources\obj_parser.h>
+#include <Resources\objloader.hpp>
 
 Model::Model(){
 
@@ -42,37 +42,37 @@ bool Model::setTexture(Texture *copyTexture){
 
 void Model::findEdges(){
 
-	hyo = lyo = vp[1];
-	hzo = lzo = vp[2];
-	hxo = lxo = vp[3];
+	hyo = lyo = 0;
+	hzo = lzo = 0;
+	hxo = lxo = 0;
 
-	for (int i = 0; i < pointCount; i += 3){
+	for (int i = 0; i < vertices.size(); i++){
 
 		// find max and min y
-		if (vp[i + 1] > hyo){
-			hyo = vp[i + 1];
+		if (vertices[i].x > hyo){
+			hyo = vertices[i].x;
 		}
 
-		if (vp[i + 1] < lyo){
-			lyo = vp[i + 1];
+		if (vertices[i].x < lyo){
+			lyo = vertices[i].x;
 		}
 
 		// find max and min z
-		if (vp[i + 2] > hzo){
-			hzo = vp[i + 2];
+		if (vertices[i].z > hzo){
+			hzo = vertices[i].z;
 		}
 
-		if (vp[i + 2] < lzo){
-			lzo = vp[i + 2];
+		if (vertices[i].z < lzo){
+			lzo = vertices[i].z;
 		}
 
 		// find max and min x
-		if (vp[i + 3] > hxo){
-			hxo = vp[i + 3];
+		if (vertices[i].x > hxo){
+			hxo = vertices[i].x;
 		}
 
-		if (vp[i + 3] < lzo){
-			lxo = vp[i + 3];
+		if (vertices[i].x < lzo){
+			lxo = vertices[i].x;
 		}
 
 	}
@@ -103,8 +103,7 @@ void Model::setRotating(float speed){
 
 bool Model::initFromFile(std::string file){
 
-	if (!load_obj_file(file.c_str(), vp, UV, vn, pointCount)){
-		printf("Error loading model");
+	if (!loadOBJ(file.c_str(), vertices, uvs, normals)){
 		return false;
 	}
 
@@ -113,11 +112,12 @@ bool Model::initFromFile(std::string file){
 	glGenBuffers(1, &uvVBO);
 	glGenBuffers(1, &vnVBO);
 
-	vaoSize = sizeof(float) * pointCount * 3;
-	uvSize = sizeof(UV) * sizeof(float) * pointCount;
+	vaoSize = vertices.size() * sizeof(glm::vec3);
+	uvSize = uvs.size() * sizeof(glm::vec2);
+	normalSize = normals.size() * sizeof(glm::vec3);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, vaoSize, vp, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vaoSize, &vertices[0], GL_STATIC_DRAW);
 
 	findEdges();
 
@@ -126,11 +126,10 @@ bool Model::initFromFile(std::string file){
 }
 
 bool Model::copyFromExisting(Model *e){
-
-	vp = e->vp;
-	UV = e->UV;
-	vn = e->vn;
-	pointCount = e->pointCount;
+	
+	vertices = e->vertices;
+	uvs = e->uvs;
+	normals = e->normals;
 
 	vaoSize = e->vaoSize;
 	uvSize = e->uvSize;
@@ -141,11 +140,12 @@ bool Model::copyFromExisting(Model *e){
 	glGenBuffers(1, &vnVBO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, vaoSize, vp, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vaoSize, &vertices[0], GL_STATIC_DRAW);
 
 	findEdges();
-
+	
 	return true;
+
 
 }
 
@@ -165,13 +165,13 @@ void Model::draw(){
 
 	/* set uv data in the shader */
 	glBindBuffer(GL_ARRAY_BUFFER, uvVBO);
-	glBufferData(GL_ARRAY_BUFFER, uvSize, UV, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, uvSize, &uvs[0], GL_STATIC_DRAW);
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 	
 	/* set normal data in the shader */
 	glBindBuffer(GL_ARRAY_BUFFER, vnVBO);
-	glBufferData(GL_ARRAY_BUFFER, vaoSize, vn, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vaoSize, &normals[0], GL_STATIC_DRAW);
 	glEnableVertexAttribArray(2);
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 	

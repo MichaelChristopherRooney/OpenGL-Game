@@ -8,8 +8,8 @@ public:
 
 	Player();
 
-	void updateAndDraw();
-	void processInput();
+	void draw();
+	void update();
 
 	Model *playerModel;
 
