@@ -25,8 +25,8 @@ public:
 	bool initOpenGL();
 	void runTick();
 
-	int xRes = 1600;
-	int yRes = 900;
+	int xRes = 1280;
+	int yRes = 720;
 
 	float deltaTime = 0;
 	float lastTime = 0;
