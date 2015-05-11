@@ -14,7 +14,7 @@ Your compiler must also know where to find OpenGL, glew and GLFW libraries.
 
 #Implemented features:
 
-- User input
+- User controllable avatar and camera
 
 - Loading and displaying several textured models at once
 
