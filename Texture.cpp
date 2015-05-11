@@ -4,12 +4,15 @@ Texture::Texture(){
 
 }
 
-void Texture::load_from_file(std::string file){
+bool Texture::loadFromFile(std::string file){
+
 	data = stbi_load(file.c_str(), &width, &height, &comp, 0);
 	glGenTextures(1, &textureID);
+
+	return true;
 }
 
-void Texture::set_active(){
+void Texture::setActive(){
 
 	glActiveTexture(GL_TEXTURE0);
 

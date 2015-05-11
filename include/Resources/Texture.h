@@ -8,8 +8,8 @@ public:
 
 	Texture();
 
-	void set_active();
-	void load_from_file(std::string file);
+	void setActive();
+	bool loadFromFile(std::string file);
 
 	int width, height, comp;
 	unsigned char * data;

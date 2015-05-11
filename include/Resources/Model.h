@@ -17,20 +17,18 @@ public:
 
 	Texture *texture;
 
-
 	bool initFromFile(std::string file);
 	bool copyFromExisting(Model *e);
+
 	bool setTexture(std::string textureFile);
 	bool setTexture(Texture *copyTexture);
 	
-
 	void findEdges();
-	void setRotating(float speed);
+
 	void translate(float x, float y, float z);
 	void translate(glm::vec3 t);
 	void translate();
-	void scale(float x, float y, float z);
-	void rotate(float deltaTime);
+
 	void draw();
 
 	std::vector<glm::vec3> vertices;
@@ -46,13 +44,6 @@ public:
 	int vaoSize;
 	int uvSize;
 	int normalSize;
-
-	bool isRotating;
-	float rotateRate;
-	float angle;
-
-	float speed = 0;
-	float acceleration = 0;
 
 	float tx, ty, tz;
 	glm::vec3 tVec;

@@ -7,7 +7,7 @@ Game::Game(){
 /* initialise everything needed to run the game */
 bool Game::init(){
 
-	
+	// fatal if opengl and the shader cannot initialise
 	if (!initOpenGL()){
 		printf("Error in creating OpenGL instance\n");
 		return false;
@@ -23,18 +23,15 @@ bool Game::init(){
 	input = new Input();
 	camera = new Camera();
 	light = new Light();
+	physics = new Physics();
 	textures = new TextureData();
 	models = new ModelData();
 
 	map = new Map();
-	if (!map->createMap()){
-		printf("Error creating map\n");
-		return false;
-	}
 
 	modelMatrix = glm::mat4(1.0f);
 
-	glfwSetCursorPos(window, xRes / 2, yRes / 2);
+	glfwSetCursorPos(window, xRes / 2, yRes / 2); // stops camera starting at the wrong location
 
 	return true;
 
@@ -61,9 +58,6 @@ bool Game::initOpenGL(){
 	glewExperimental = GL_TRUE;
 	glewInit();
 
-	renderer = glGetString(GL_RENDERER);
-	version = glGetString(GL_VERSION);
-
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_CULL_FACE);
@@ -83,10 +77,12 @@ void Game::runTick(){
 	shader->setActive();
 
 	input->update();
-	camera->updateAngles();
 	player->update();
+	camera->updateAngles();
 	camera->updatePosition();
 	light->update();
+
+	physics->checkForHit();
 
 	map->drawBlocks();
 	player->draw();

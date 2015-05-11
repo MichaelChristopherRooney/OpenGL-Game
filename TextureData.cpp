@@ -8,6 +8,7 @@ This is to allow data to be shared so that redundant copies do not have to be ma
 TextureData::TextureData(){
 
 	metalTexture = new Texture();
-	metalTexture->load_from_file(metalTextureFile);
+	metalTexture->loadFromFile(metalTextureFile);
+
 
 }

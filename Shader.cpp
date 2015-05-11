@@ -6,12 +6,12 @@ Shader::Shader(){
 
 bool Shader::createShader(){
 
-	/* load the vertex shader */
+	/* create the vertex shader */
 	if (!createVertexShader()){
 		return false;
 	}
 
-	/* load the fragment shader */
+	/* create the fragment shader */
 	if (!createFragmentShader()){
 		return false;
 	}
@@ -63,6 +63,10 @@ bool Shader::createFragmentShader(){
 
 }
 
+/*
+check if the shaders compiled with error
+print any errors that are present
+*/
 bool Shader::checkShaderStatus(){
 
 	GLint status;
@@ -98,7 +102,7 @@ bool Shader::checkShaderStatus(){
 void Shader::getIDs(){
 
 	shaderIDs.insert({
-		{ "model", glGetUniformLocation(shaderProgramme, "model") },
+		{ "model",	glGetUniformLocation(shaderProgramme, "model") },
 		{ "projection",	glGetUniformLocation(shaderProgramme, "projection") },
 		{ "view", glGetUniformLocation(shaderProgramme, "view") },
 		{ "translation", glGetUniformLocation(shaderProgramme, "translation") },

@@ -8,12 +8,13 @@
 #include <Resources\Model.h>
 #include <Resources\Input.h>
 #include <Resources\Camera.h>
-#include <Resources\Player.h>
 #include <Resources\Map.h>
 #include <Resources\Light.h>
 #include <Resources\Texture.h>
 #include <Resources\TextureData.h>
 #include <Resources\ModelData.h>
+#include <Resources\Physics.h>
+#include <Resources\Player.h>
 
 class Game{
 
@@ -40,6 +41,7 @@ public:
 	Light *light;
 	TextureData *textures;
 	ModelData *models;
+	Physics *physics;
 
 	glm::mat4 modelMatrix;
 

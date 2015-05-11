@@ -22,7 +22,6 @@ public:
 	glm::vec3 direction;
 	glm::vec3 right;
 	glm::vec3 up;
-	glm::vec3 jump;
 
 	glm::mat4 projection;
 	glm::mat4 view;

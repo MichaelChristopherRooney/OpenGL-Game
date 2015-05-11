@@ -17,6 +17,14 @@ Input::Input(){
 
 void Input::update(){
 
+	/*
+	if window is not focused return
+	stops camera from moving erratically
+	*/
+	if (!glfwGetWindowAttrib(game->window, GLFW_FOCUSED)){
+		return;
+	}
+
 	if (glfwGetKey(game->window, GLFW_KEY_W)){
 		keys.at("W") = true;
 	}else{

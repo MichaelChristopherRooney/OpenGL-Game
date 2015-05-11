@@ -11,6 +11,7 @@ public:
 
 	Input();
 	void update();
+
 	std::unordered_map<std::string, bool> keys;
 
 	double mouseX;

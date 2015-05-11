@@ -20,10 +20,10 @@ void Light::update(){
 	glUniform3fv(game->shader->shaderIDs.at("lightDiffuse"), 1, &lightDiffuse[0]);
 	glUniform3fv(game->shader->shaderIDs.at("lightAmbient"), 1, &lightAmbient[0]);
 
-	lightPosition = glm::vec3(
-		game->player->playerModel->centre.x,
-		game->player->playerModel->centre.y + game->player->playerModel->yLen,
-		game->player->playerModel->centre.z
-	);
+	lightPosition = glm::vec3{
+		game->camera->position.x,
+		game->camera->position.y,
+		game->camera->position.z
+	};
 
 }

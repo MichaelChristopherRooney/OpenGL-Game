@@ -10,10 +10,16 @@ public:
 
 	void draw();
 	void update();
+	void handleInput();
+	void handlePhysics();
 
 	Model *playerModel;
 
-	const float playerSpeed = 2.0f;
+	float xSpeed;
+	float zSpeed;
+
+	const float acceleration = 0.025f;
+	const float maxSpeed = 1.0f;
 
 
 };

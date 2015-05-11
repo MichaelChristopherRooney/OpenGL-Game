@@ -13,7 +13,7 @@ public:
 	void getIDs();
 	bool createVertexShader();
 	bool createFragmentShader();
-	bool loadShaderFile(std::string& loadedString, std::string& fileToLoad);
+	bool Shader::loadShaderFile(std::string& loadedString, std::string& fileToLoad);
 	void setActive();
 	bool checkShaderStatus();
 

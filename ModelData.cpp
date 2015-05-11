@@ -10,4 +10,5 @@ ModelData::ModelData(){
 	cube = new Model();
 	cube->initFromFile(cubeFile);
 
+
 }
